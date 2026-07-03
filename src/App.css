@@ -63,3 +63,37 @@ body {
 .content {
   padding: 24px;
 }
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: #F4F6F8;
+  font-size: 22px;
+  cursor: pointer;
+  margin-right: 16px;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+}
+
+/* Tablet and mobile: screens 768px wide or smaller */
+@media (max-width: 768px) {
+  .sidebar {
+    position: fixed;
+    left: -220px;
+    top: 0;
+    height: 100vh;
+    transition: left 0.3s ease;
+    z-index: 100;
+  }
+
+  .sidebar.open {
+    left: 0;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+}
