@@ -1,16 +1,61 @@
-# React + Vite
+# Synexus Admin Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A responsive admin dashboard built with React.js as part of the Frontend Development Internship at Synexus Software Technologies.
 
-Currently, two official plugins are available:
+## Features (Week 1)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Responsive layout with a persistent, collapsible sidebar and top header
+- Client-side routing across 4 pages: Overview, Inventory, Settings, Reports
+- Sidebar automatically collapses on mobile/tablet screens, with a hamburger menu toggle
+- Layout tested and confirmed working across desktop, tablet, and mobile breakpoints
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React.js
+- React Router (react-router-dom)
+- Vite
+- CSS (Flexbox, media queries)
 
-## Expanding the Oxlint configuration
+## Getting Started
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+### Prerequisites
+- Node.js installed ([download here](https://nodejs.org))
+
+### Installation
+
+1. Clone the repository
+git clone https://github.com/UroojSheikh/synexus-admin-dashboard.git
+
+2. Navigate into the project folder
+cd synexus-admin-dashboard
+
+3. Install dependencies
+npm install
+
+4. Start the development server
+npm run dev
+
+5. Open your browser to `http://localhost:5173`
+
+## Project Structure
+src/
+├── pages/
+│   ├── Overview.jsx
+│   ├── Inventory.jsx
+│   ├── Settings.jsx
+│   └── Reports.jsx
+├── App.jsx        # main layout + routing
+├── App.css         # layout and responsive styling
+
+## Screenshots
+
+*(Screenshots added below — desktop and mobile views)*
+
+## Known Limitations / Next Steps
+
+- Page content is currently placeholder text; real content (forms, tables, etc.) will be built in Weeks 2-4
+- Sidebar navigation currently uses plain `<Link>` — active route highlighting will be added in a future iteration
+
+## Author
+
+Urooj Sheikh — [LinkedIn](https://www.linkedin.com/in/urooj-sheikh/)
