@@ -49,11 +49,10 @@ src/
 
 ## Screenshots
 
-![Desktop Inventory View](./screenshots/desktop-Inventory.png)
-![Desktop Settings View](./screenshots/desktop-Settings.png)
-![Mobile Sidebar Closed](./screenshots/mobile-closed.png)
-![Mobile Sidebar Open](./screenshots/mobile-open.png)
-
+![Desktop Inventory View](./src/screenshots/desktop-Inventory.png)
+![Desktop Settings View](./src/screenshots/desktop-Settings.png)
+![Mobile Sidebar Closed](./src/screenshots/mobile-closed.png)
+![Mobile Sidebar Open](./src/screenshots/mobile-open.png)
 ## Known Limitations / Next Steps
 
 - Page content is currently placeholder text; real content (forms, tables, etc.) will be built in Weeks 2-4
