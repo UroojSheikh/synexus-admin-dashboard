@@ -49,7 +49,10 @@ src/
 
 ## Screenshots
 
-*(Screenshots added below — desktop and mobile views)*
+![Desktop Inventory View](./screenshots/desktop-Inventory.png)
+![Desktop Settings View](./screenshots/desktop-Settings.png)
+![Mobile Sidebar Closed](./screenshots/mobile-closed.png)
+![Mobile Sidebar Open](./screenshots/mobile-open.png)
 
 ## Known Limitations / Next Steps
 
