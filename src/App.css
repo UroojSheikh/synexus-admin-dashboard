@@ -153,3 +153,36 @@ button[type="submit"] {
   color: #6EE7C0;
   margin-top: 12px;
 }
+.radio-group {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.radio-option {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #F4F6F8;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.form-group input[type="date"],
+.form-group input[type="file"] {
+  padding: 10px 12px;
+  border-radius: 6px;
+  border: 1px solid #2A3346;
+  background-color: #171E2E;
+  color: #F4F6F8;
+  font-size: 14px;
+}
+.error-message {
+  color: #FF6B6B;
+  font-size: 13px;
+}
+
+.form-group input.invalid,
+.form-group select.invalid {
+  border-color: #FF6B6B;
+}
