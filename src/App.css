@@ -58,11 +58,14 @@ body {
   background-color: #121828;
   padding: 16px 24px;
   border-bottom: 1px solid #2A3346;
+  display: flex;
+  align-items: center;
 }
 
 .content {
   padding: 24px;
 }
+
 .menu-toggle {
   display: none;
   background: none;
@@ -73,12 +76,6 @@ body {
   margin-right: 16px;
 }
 
-.topbar {
-  display: flex;
-  align-items: center;
-}
-
-/* Tablet and mobile: screens 768px wide or smaller */
 @media (max-width: 768px) {
   .sidebar {
     position: fixed;
@@ -96,4 +93,63 @@ body {
   .menu-toggle {
     display: block;
   }
+}
+
+.form-container {
+  max-width: 500px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group label {
+  font-size: 14px;
+  color: #97A3B8;
+}
+
+.form-group input {
+  padding: 10px 12px;
+  border-radius: 6px;
+  border: 1px solid #2A3346;
+  background-color: #171E2E;
+  color: #F4F6F8;
+  font-size: 14px;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #6EE7C0;
+}
+
+.form-group select {
+  padding: 10px 12px;
+  border-radius: 6px;
+  border: 1px solid #2A3346;
+  background-color: #171E2E;
+  color: #F4F6F8;
+  font-size: 14px;
+}
+
+.form-group select:focus {
+  outline: none;
+  border-color: #6EE7C0;
+}
+
+button[type="submit"] {
+  background-color: #6EE7C0;
+  color: #0F1420;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.success-message {
+  color: #6EE7C0;
+  margin-top: 12px;
 }

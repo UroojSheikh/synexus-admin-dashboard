@@ -4,6 +4,7 @@ import Overview from './pages/Overview';
 import Inventory from './pages/Inventory';
 import Settings from './pages/Settings';
 import Reports from './pages/Reports';
+import AddEmployee from './pages/AddEmployee';
 import './App.css';
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
             <Link to="/inventory" onClick={() => setIsSidebarOpen(false)}>Inventory</Link>
             <Link to="/settings" onClick={() => setIsSidebarOpen(false)}>Settings</Link>
             <Link to="/reports" onClick={() => setIsSidebarOpen(false)}>Reports</Link>
+            <Link to="/add-employee" onClick={() => setIsSidebarOpen(false)}>Add Employee</Link>
           </nav>
         </aside>
 
@@ -39,6 +41,7 @@ function App() {
               <Route path="/inventory" element={<Inventory />} />
               <Route path="/settings" element={<Settings />} />
               <Route path="/reports" element={<Reports />} />
+              <Route path="/add-employee" element={<AddEmployee />} />            
             </Routes>
           </main>
         </div>
