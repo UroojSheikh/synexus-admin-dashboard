@@ -208,3 +208,19 @@ button[type="submit"] {
 .data-table tr:hover {
   background-color: #171E2E;
 }
+.search-input {
+  padding: 10px 12px;
+  border-radius: 6px;
+  border: 1px solid #2A3346;
+  background-color: #171E2E;
+  color: #F4F6F8;
+  font-size: 14px;
+  margin-bottom: 16px;
+  width: 100%;
+  max-width: 300px;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #6EE7C0;
+}
