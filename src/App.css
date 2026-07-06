@@ -186,3 +186,25 @@ button[type="submit"] {
 .form-group select.invalid {
   border-color: #FF6B6B;
 }
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 16px;
+}
+
+.data-table th,
+.data-table td {
+  text-align: left;
+  padding: 12px;
+  border-bottom: 1px solid #2A3346;
+}
+
+.data-table th {
+  color: #97A3B8;
+  font-size: 13px;
+  text-transform: uppercase;
+}
+
+.data-table tr:hover {
+  background-color: #171E2E;
+}

@@ -1,5 +1,63 @@
+import { useState, useEffect } from 'react';
+
 function Inventory() {
-  return <h1>Inventory Page</h1>;
+  const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    fetch('https://jsonplaceholder.typicode.com/users')
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Failed to fetch users');
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setUsers(data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        setError(err.message);
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) {
+    return <p>Loading users...</p>;
+  }
+
+  if (error) {
+    return <p className="error-message">Error: {error}</p>;
+  }
+
+  if (users.length === 0) {
+    return <p>No users found.</p>;
+  }
+
+  return (
+    <div>
+      <h1>Inventory</h1>
+      <table className="data-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Company</th>
+          </tr>
+        </thead>
+        <tbody>
+          {users.map((user) => (
+            <tr key={user.id}>
+              <td>{user.name}</td>
+              <td>{user.email}</td>
+              <td>{user.company.name}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
 }
 
 export default Inventory;
