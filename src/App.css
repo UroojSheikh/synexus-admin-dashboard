@@ -224,3 +224,11 @@ button[type="submit"] {
   outline: none;
   border-color: #6EE7C0;
 }
+.sortable {
+  cursor: pointer;
+  user-select: none;
+}
+
+.sortable:hover {
+  color: #6EE7C0;
+}

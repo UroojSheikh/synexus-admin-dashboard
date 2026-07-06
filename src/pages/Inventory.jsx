@@ -5,6 +5,8 @@ function Inventory() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
+  const [sortField, setSortField] = useState('name');
+  const [sortDirection, setSortDirection] = useState('asc');
 
   useEffect(() => {
     fetch('https://jsonplaceholder.typicode.com/users')
@@ -32,9 +34,35 @@ function Inventory() {
     return <p className="error-message">Error: {error}</p>;
   }
 
+  const handleSort = (field) => {
+    if (sortField === field) {
+      setSortDirection(sortDirection === 'asc' ? 'desc' : 'asc');
+    } else {
+      setSortField(field);
+      setSortDirection('asc');
+    }
+  };
+
   const filteredUsers = users.filter((user) =>
     user.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
+  const sortedUsers = [...filteredUsers].sort((a, b) => {
+    let valueA = sortField === 'company' ? a.company.name : a[sortField];
+    let valueB = sortField === 'company' ? b.company.name : b[sortField];
+
+    valueA = valueA.toLowerCase();
+    valueB = valueB.toLowerCase();
+
+    if (valueA < valueB) return sortDirection === 'asc' ? -1 : 1;
+    if (valueA > valueB) return sortDirection === 'asc' ? 1 : -1;
+    return 0;
+  });
+
+  const getSortIndicator = (field) => {
+    if (sortField !== field) return '';
+    return sortDirection === 'asc' ? ' ▲' : ' ▼';
+  };
 
   return (
     <div>
@@ -48,19 +76,25 @@ function Inventory() {
         className="search-input"
       />
 
-      {filteredUsers.length === 0 ? (
+      {sortedUsers.length === 0 ? (
         <p>No users found.</p>
       ) : (
         <table className="data-table">
           <thead>
             <tr>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Company</th>
+              <th onClick={() => handleSort('name')} className="sortable">
+                Name{getSortIndicator('name')}
+              </th>
+              <th onClick={() => handleSort('email')} className="sortable">
+                Email{getSortIndicator('email')}
+              </th>
+              <th onClick={() => handleSort('company')} className="sortable">
+                Company{getSortIndicator('company')}
+              </th>
             </tr>
           </thead>
           <tbody>
-            {filteredUsers.map((user) => (
+            {sortedUsers.map((user) => (
               <tr key={user.id}>
                 <td>{user.name}</td>
                 <td>{user.email}</td>
