@@ -1,4 +1,5 @@
 import Button from '../components/Button';
+import Input from '../components/Input';
 import { useState } from 'react';
 
 function AddEmployee() {
@@ -63,29 +64,23 @@ function AddEmployee() {
     <div className="form-container">
       <h1>Add New Employee</h1>
       <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label htmlFor="name">Full Name</label>
-          <input
-            type="text"
-            id="name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            placeholder="Enter full name"
-          />
-          {errors.name && <span className="error-message">{errors.name}</span>}
-        </div>
+        <Input
+          label="Full Name"
+          id="name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          placeholder="Enter full name"
+          error={errors.name}
+        />
 
-        <div className="form-group">
-          <label htmlFor="email">Email</label>
-          <input
-            type="text"
-            id="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Enter email address"
-          />
-          {errors.email && <span className="error-message">{errors.email}</span>}
-        </div>
+        <Input
+          label="Email"
+          id="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="Enter email address"
+          error={errors.email}
+        />
 
         <div className="form-group">
           <label htmlFor="department">Department</label>
