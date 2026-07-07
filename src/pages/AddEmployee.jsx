@@ -1,5 +1,6 @@
 import Button from '../components/Button';
 import Input from '../components/Input';
+import Card from '../components/Card';
 import { useState } from 'react';
 
 function AddEmployee() {
@@ -63,101 +64,104 @@ function AddEmployee() {
   return (
     <div className="form-container">
       <h1>Add New Employee</h1>
-      <form onSubmit={handleSubmit}>
-        <Input
-          label="Full Name"
-          id="name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          placeholder="Enter full name"
-          error={errors.name}
-        />
 
-        <Input
-          label="Email"
-          id="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="Enter email address"
-          error={errors.email}
-        />
+      <Card title="Employee Details">
+        <form onSubmit={handleSubmit}>
+          <Input
+            label="Full Name"
+            id="name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            placeholder="Enter full name"
+            error={errors.name}
+          />
 
-        <div className="form-group">
-          <label htmlFor="department">Department</label>
-          <select
-            id="department"
-            value={department}
-            onChange={(e) => setDepartment(e.target.value)}
-          >
-            <option value="">Select a department</option>
-            <option value="engineering">Engineering</option>
-            <option value="design">Design</option>
-            <option value="marketing">Marketing</option>
-            <option value="hr">HR</option>
-          </select>
-          {errors.department && <span className="error-message">{errors.department}</span>}
-        </div>
+          <Input
+            label="Email"
+            id="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Enter email address"
+            error={errors.email}
+          />
 
-        <div className="form-group">
-          <label>Employment Type</label>
-          <div className="radio-group">
-            <label className="radio-option">
-              <input
-                type="radio"
-                name="employmentType"
-                value="full-time"
-                checked={employmentType === 'full-time'}
-                onChange={(e) => setEmploymentType(e.target.value)}
-              />
-              Full-time
-            </label>
-            <label className="radio-option">
-              <input
-                type="radio"
-                name="employmentType"
-                value="part-time"
-                checked={employmentType === 'part-time'}
-                onChange={(e) => setEmploymentType(e.target.value)}
-              />
-              Part-time
-            </label>
-            <label className="radio-option">
-              <input
-                type="radio"
-                name="employmentType"
-                value="contract"
-                checked={employmentType === 'contract'}
-                onChange={(e) => setEmploymentType(e.target.value)}
-              />
-              Contract
-            </label>
+          <div className="form-group">
+            <label htmlFor="department">Department</label>
+            <select
+              id="department"
+              value={department}
+              onChange={(e) => setDepartment(e.target.value)}
+            >
+              <option value="">Select a department</option>
+              <option value="engineering">Engineering</option>
+              <option value="design">Design</option>
+              <option value="marketing">Marketing</option>
+              <option value="hr">HR</option>
+            </select>
+            {errors.department && <span className="error-message">{errors.department}</span>}
           </div>
-          {errors.employmentType && <span className="error-message">{errors.employmentType}</span>}
-        </div>
 
-        <div className="form-group">
-          <label htmlFor="startDate">Start Date</label>
-          <input
-            type="date"
-            id="startDate"
-            value={startDate}
-            onChange={(e) => setStartDate(e.target.value)}
-          />
-          {errors.startDate && <span className="error-message">{errors.startDate}</span>}
-        </div>
+          <div className="form-group">
+            <label>Employment Type</label>
+            <div className="radio-group">
+              <label className="radio-option">
+                <input
+                  type="radio"
+                  name="employmentType"
+                  value="full-time"
+                  checked={employmentType === 'full-time'}
+                  onChange={(e) => setEmploymentType(e.target.value)}
+                />
+                Full-time
+              </label>
+              <label className="radio-option">
+                <input
+                  type="radio"
+                  name="employmentType"
+                  value="part-time"
+                  checked={employmentType === 'part-time'}
+                  onChange={(e) => setEmploymentType(e.target.value)}
+                />
+                Part-time
+              </label>
+              <label className="radio-option">
+                <input
+                  type="radio"
+                  name="employmentType"
+                  value="contract"
+                  checked={employmentType === 'contract'}
+                  onChange={(e) => setEmploymentType(e.target.value)}
+                />
+                Contract
+              </label>
+            </div>
+            {errors.employmentType && <span className="error-message">{errors.employmentType}</span>}
+          </div>
 
-        <div className="form-group">
-          <label htmlFor="photo">Profile Photo (optional)</label>
-          <input
-            type="file"
-            id="photo"
-            accept="image/*"
-            onChange={(e) => setPhoto(e.target.files[0])}
-          />
-        </div>
+          <div className="form-group">
+            <label htmlFor="startDate">Start Date</label>
+            <input
+              type="date"
+              id="startDate"
+              value={startDate}
+              onChange={(e) => setStartDate(e.target.value)}
+            />
+            {errors.startDate && <span className="error-message">{errors.startDate}</span>}
+          </div>
 
-        <Button type="submit" variant="primary" size="medium">Add Employee</Button>
-      </form>
+          <div className="form-group">
+            <label htmlFor="photo">Profile Photo (optional)</label>
+            <input
+              type="file"
+              id="photo"
+              accept="image/*"
+              onChange={(e) => setPhoto(e.target.files[0])}
+            />
+          </div>
+
+          <Button type="submit" variant="primary" size="medium">Add Employee</Button>
+        </form>
+      </Card>
 
       {submitted && <p className="success-message">Employee added successfully!</p>}
     </div>
