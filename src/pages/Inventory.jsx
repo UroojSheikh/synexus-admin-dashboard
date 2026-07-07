@@ -7,6 +7,8 @@ function Inventory() {
   const [searchTerm, setSearchTerm] = useState('');
   const [sortField, setSortField] = useState('name');
   const [sortDirection, setSortDirection] = useState('asc');
+  const [currentPage, setCurrentPage] = useState(1);
+  const rowsPerPage = 5;
 
   useEffect(() => {
     fetch('https://jsonplaceholder.typicode.com/users')
@@ -59,9 +61,18 @@ function Inventory() {
     return 0;
   });
 
+  const totalPages = Math.ceil(sortedUsers.length / rowsPerPage);
+  const startIndex = (currentPage - 1) * rowsPerPage;
+  const paginatedUsers = sortedUsers.slice(startIndex, startIndex + rowsPerPage);
+
   const getSortIndicator = (field) => {
     if (sortField !== field) return '';
     return sortDirection === 'asc' ? ' ▲' : ' ▼';
+  };
+
+  const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value);
+    setCurrentPage(1);
   };
 
   return (
@@ -72,37 +83,55 @@ function Inventory() {
         type="text"
         placeholder="Search by name..."
         value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
+        onChange={handleSearchChange}
         className="search-input"
       />
 
-      {sortedUsers.length === 0 ? (
+      {paginatedUsers.length === 0 ? (
         <p>No users found.</p>
       ) : (
-        <table className="data-table">
-          <thead>
-            <tr>
-              <th onClick={() => handleSort('name')} className="sortable">
-                Name{getSortIndicator('name')}
-              </th>
-              <th onClick={() => handleSort('email')} className="sortable">
-                Email{getSortIndicator('email')}
-              </th>
-              <th onClick={() => handleSort('company')} className="sortable">
-                Company{getSortIndicator('company')}
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {sortedUsers.map((user) => (
-              <tr key={user.id}>
-                <td>{user.name}</td>
-                <td>{user.email}</td>
-                <td>{user.company.name}</td>
+        <>
+          <table className="data-table">
+            <thead>
+              <tr>
+                <th onClick={() => handleSort('name')} className="sortable">
+                  Name{getSortIndicator('name')}
+                </th>
+                <th onClick={() => handleSort('email')} className="sortable">
+                  Email{getSortIndicator('email')}
+                </th>
+                <th onClick={() => handleSort('company')} className="sortable">
+                  Company{getSortIndicator('company')}
+                </th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {paginatedUsers.map((user) => (
+                <tr key={user.id}>
+                  <td>{user.name}</td>
+                  <td>{user.email}</td>
+                  <td>{user.company.name}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+
+          <div className="pagination">
+            <button
+              disabled={currentPage === 1}
+              onClick={() => setCurrentPage(currentPage - 1)}
+            >
+              Previous
+            </button>
+            <span>Page {currentPage} of {totalPages}</span>
+            <button
+              disabled={currentPage === totalPages}
+              onClick={() => setCurrentPage(currentPage + 1)}
+            >
+              Next
+            </button>
+          </div>
+        </>
       )}
     </div>
   );

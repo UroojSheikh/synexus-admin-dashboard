@@ -232,3 +232,28 @@ button[type="submit"] {
 .sortable:hover {
   color: #6EE7C0;
 }
+.pagination {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.pagination button {
+  background-color: #171E2E;
+  color: #F4F6F8;
+  border: 1px solid #2A3346;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.pagination button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.pagination span {
+  color: #97A3B8;
+  font-size: 14px;
+}
