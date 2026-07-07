@@ -1,3 +1,4 @@
+import Button from '../components/Button';
 import { useState } from 'react';
 
 function AddEmployee() {
@@ -160,7 +161,7 @@ function AddEmployee() {
           />
         </div>
 
-        <button type="submit">Add Employee</button>
+        <Button type="submit" variant="primary" size="medium">Add Employee</Button>
       </form>
 
       {submitted && <p className="success-message">Employee added successfully!</p>}

@@ -257,3 +257,46 @@ button[type="submit"] {
   color: #97A3B8;
   font-size: 14px;
 }
+.btn {
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  background-color: #6EE7C0;
+  color: #0F1420;
+}
+
+.btn-secondary {
+  background-color: #171E2E;
+  color: #F4F6F8;
+  border: 1px solid #2A3346;
+}
+
+.btn-danger {
+  background-color: #FF6B6B;
+  color: #0F1420;
+}
+
+.btn-small {
+  padding: 6px 12px;
+  font-size: 13px;
+}
+
+.btn-medium {
+  padding: 10px 20px;
+  font-size: 14px;
+}
+
+.btn-large {
+  padding: 14px 28px;
+  font-size: 16px;
+}
