@@ -16,6 +16,14 @@ A responsive admin dashboard built with React.js as part of the Frontend Develop
 - Friendly, field-specific error messages that clear once corrected
 - Form prevents submission until all validation passes
 
+## Features (Week 3)
+
+- Live data fetched from a public REST API (JSONPlaceholder)
+- Loading, error, and empty states handled gracefully
+- Real-time search filtering by name
+- Sortable columns (Name, Email, Company) with ascending/descending toggle
+- Pagination with Previous/Next controls
+
 ## Tech Stack
 
 - React.js
@@ -64,10 +72,10 @@ The main layout and routing controller for the app. Manages the sidebar's open/c
 Handles all layout and responsive styling. Uses Flexbox to split the layout into a fixed-width sidebar and a flexible content area (`flex: 1`). Media queries (`max-width: 768px`) control the collapsible sidebar behavior on smaller screens, using `position: fixed` and a sliding `transition` for smooth open/close animation.
 
 **pages/Overview.jsx, Settings.jsx, Reports.jsx**
-Placeholder page components representing dashboard sections, rendered inside the routed content area. Currently static content; will be built out with real functionality in Weeks 3-4.
+Placeholder page components representing dashboard sections, rendered inside the routed content area. Currently static content; will be built out with real functionality in Week 4.
 
 **pages/Inventory.jsx**
-Will be converted into a live data table in Week 3, fetching and displaying records via API integration.
+Fetches user data from a public API on mount using `useEffect` and `fetch`. Handles loading, error, and empty states before rendering the table. Includes live search (filtering by name), sortable columns (toggling ascending/descending via clickable headers), and pagination (5 rows per page, calculated using `Math.ceil` and `.slice()`).
 
 **pages/AddEmployee.jsx**
 A complex form for adding a new employee, demonstrating controlled inputs across every major HTML input type (text, select, radio, date, file). Uses a single `errors` state object to track field-level validation, checked via a `validate()` function before allowing submission. `e.preventDefault()` stops native form submission so React fully controls the flow.
@@ -92,6 +100,16 @@ The Add Employee form validates the following cases:
 
 Profile Photo is optional and has no validation. All other fields are required; the form will not submit until every validation rule passes.
 
+## API Notes (Week 3)
+
+The Inventory page fetches data from a public REST API used for testing/prototyping:
+
+- **Endpoint:** `https://jsonplaceholder.typicode.com/users`
+- **Method:** GET
+- **Response:** Array of user objects (id, name, email, company, etc.)
+- No authentication required
+- Data is fetched once on component mount using `useEffect`
+
 ## Screenshots
 
 ![Desktop Inventory View](./src/screenshots/desktop-Inventory.png)
@@ -100,12 +118,16 @@ Profile Photo is optional and has no validation. All other fields are required; 
 ![Mobile Sidebar Open](./src/screenshots/mobile-open.png)
 ![Form Validation Errors](./src/screenshots/form-validation-errors.png)
 ![Form Submitted Successfully](./src/screenshots/form-success.png)
+![Inventory Table Loaded](./src/screenshots/inventory-table.png)
+![Inventory Search Filtering](./src/screenshots/inventory-search.png)
+![Inventory Sorted Column](./src/screenshots/inventory-sorted.png)
+![Inventory Pagination](./src/screenshots/inventory-pagination.png)
 
 ## Known Limitations / Next Steps
 
-- Overview, Settings, and Reports pages currently show placeholder text; real content will be built in Weeks 3-4
+- Overview, Settings, and Reports pages currently show placeholder text; real content will be built in Week 4
 - Sidebar navigation currently uses plain `<Link>` — active route highlighting will be added in a future iteration
-- Add Employee form currently logs submissions to the console; will connect to a real/mock API in Week 3
+- Inventory data is from a placeholder API; will connect to real backend data if/when available
 
 ## Author
 
