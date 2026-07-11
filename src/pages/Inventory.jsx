@@ -1,4 +1,7 @@
 import { useState, useEffect } from 'react';
+import SearchBar from '../components/SearchBar';
+import Pagination from '../components/Pagination';
+import TableSkeleton from '../components/TableSkeleton';
 
 function Inventory() {
   const [users, setUsers] = useState([]);
@@ -29,9 +32,13 @@ function Inventory() {
   }, []);
 
   if (loading) {
-    return <p>Loading users...</p>;
-  }
-
+  return (
+    <div>
+      <h1>Inventory</h1>
+      <TableSkeleton rows={5} columns={3} />
+    </div>
+  );
+}
   if (error) {
     return <p className="error-message">Error: {error}</p>;
   }
@@ -79,13 +86,11 @@ function Inventory() {
     <div>
       <h1>Inventory</h1>
 
-      <input
-        type="text"
-        placeholder="Search by name..."
-        value={searchTerm}
-        onChange={handleSearchChange}
-        className="search-input"
-      />
+      <SearchBar
+  value={searchTerm}
+  onChange={handleSearchChange}
+  placeholder="Search by name..."
+/>
 
       {paginatedUsers.length === 0 ? (
         <p>No users found.</p>
@@ -116,21 +121,12 @@ function Inventory() {
             </tbody>
           </table>
 
-          <div className="pagination">
-            <button
-              disabled={currentPage === 1}
-              onClick={() => setCurrentPage(currentPage - 1)}
-            >
-              Previous
-            </button>
-            <span>Page {currentPage} of {totalPages}</span>
-            <button
-              disabled={currentPage === totalPages}
-              onClick={() => setCurrentPage(currentPage + 1)}
-            >
-              Next
-            </button>
-          </div>
+        <Pagination
+  currentPage={currentPage}
+  totalPages={totalPages}
+  onPrevious={() => setCurrentPage(currentPage - 1)}
+  onNext={() => setCurrentPage(currentPage + 1)}
+/>
         </>
       )}
     </div>

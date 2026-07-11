@@ -312,3 +312,23 @@ button[type="submit"] {
   margin-bottom: 16px;
   color: #F4F6F8;
 }
+.logo-img {
+  width: 140px;
+  margin-bottom: 20px;
+}
+.skeleton-bar {
+  height: 14px;
+  background: linear-gradient(90deg, #171E2E 25%, #232C42 50%, #171E2E 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 4px;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}

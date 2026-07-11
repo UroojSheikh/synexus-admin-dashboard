@@ -19,17 +19,26 @@ A responsive admin dashboard built with React.js as part of the Frontend Develop
 ## Features (Week 3)
 
 - Live data fetched from a public REST API (JSONPlaceholder)
-- Loading, error, and empty states handled gracefully
+- Animated skeleton loader shown while data is loading
+- Error and empty states handled gracefully
 - Real-time search filtering by name
 - Sortable columns (Name, Email, Company) with ascending/descending toggle
 - Pagination with Previous/Next controls
+
+## Features (Week 4)
+
+- Reusable component library: `Button`, `Input`, `Card`, `SearchBar`, `Pagination`, `TableSkeleton`
+- Components accept configuration through props (variant, size, disabled, loading, error, etc.)
+- Components composed together (e.g. `Pagination` internally uses `Button`)
+- Same components reused across multiple pages (Add Employee form and Inventory table)
+- Synexus brand logo implemented in the sidebar, replacing plain text branding
 
 ## Tech Stack
 
 - React.js
 - React Router (react-router-dom)
 - Vite
-- CSS (Flexbox, media queries)
+- CSS (Flexbox, media queries, CSS animations)
 
 ## Getting Started
 
@@ -54,37 +63,61 @@ npm run dev
 
 ## Project Structure
 src/
+├── components/
+│   ├── Button.jsx
+│   ├── Input.jsx
+│   ├── Card.jsx
+│   ├── SearchBar.jsx
+│   ├── Pagination.jsx
+│   └── TableSkeleton.jsx
 ├── pages/
 │   ├── Overview.jsx
 │   ├── Inventory.jsx
 │   ├── Settings.jsx
 │   ├── Reports.jsx
 │   └── AddEmployee.jsx
+├── assets/
+│   └── synexus-logo.png
 ├── App.jsx        # main layout + routing
 ├── App.css         # layout and responsive styling
 
 ## Component Notes
 
 **App.jsx**
-The main layout and routing controller for the app. Manages the sidebar's open/closed state using `useState`, and wraps the entire app in `BrowserRouter`. Renders the persistent sidebar and top header, while page content is swapped dynamically via React Router based on the current URL. Also handles closing the sidebar automatically on navigation, for mobile usability.
+The main layout and routing controller for the app. Manages the sidebar's open/closed state using `useState`, and wraps the entire app in `BrowserRouter`. Renders the persistent sidebar (with the Synexus brand logo) and top header, while page content is swapped dynamically via React Router based on the current URL. Also handles closing the sidebar automatically on navigation, for mobile usability.
 
 **App.css**
-Handles all layout and responsive styling. Uses Flexbox to split the layout into a fixed-width sidebar and a flexible content area (`flex: 1`). Media queries (`max-width: 768px`) control the collapsible sidebar behavior on smaller screens, using `position: fixed` and a sliding `transition` for smooth open/close animation.
+Handles all layout and responsive styling. Uses Flexbox to split the layout into a fixed-width sidebar and a flexible content area (`flex: 1`). Media queries (`max-width: 768px`) control the collapsible sidebar behavior on smaller screens. Also includes the shimmer animation used by `TableSkeleton`.
 
 **pages/Overview.jsx, Settings.jsx, Reports.jsx**
-Placeholder page components representing dashboard sections, rendered inside the routed content area. Currently static content; will be built out with real functionality in Week 4.
+Placeholder page components, as explicitly permitted by the project requirements ("set up routing for at least three placeholder pages"). Routed and accessible via the sidebar.
 
 **pages/Inventory.jsx**
-Fetches user data from a public API on mount using `useEffect` and `fetch`. Handles loading, error, and empty states before rendering the table. Includes live search (filtering by name), sortable columns (toggling ascending/descending via clickable headers), and pagination (5 rows per page, calculated using `Math.ceil` and `.slice()`).
+Fetches user data from a public API on mount using `useEffect` and `fetch`. Shows an animated `TableSkeleton` while loading, and handles error and empty states. Includes live search (via the reusable `SearchBar` component), sortable columns (toggling ascending/descending via clickable headers), and pagination (via the reusable `Pagination` component).
 
 **pages/AddEmployee.jsx**
-A complex form for adding a new employee, demonstrating controlled inputs across every major HTML input type (text, select, radio, date, file). Uses a single `errors` state object to track field-level validation, checked via a `validate()` function before allowing submission. `e.preventDefault()` stops native form submission so React fully controls the flow.
+A complex form for adding a new employee, wrapped in a `Card` component. Demonstrates controlled inputs across every major HTML input type (text, select, radio, date, file), using the reusable `Input` component for text fields. Uses a single `errors` state object to track field-level validation, checked via a `validate()` function before allowing submission.
 
-**Counter.jsx / ToggleText.jsx**
-Early learning components built while practicing React state management (`useState`). Not currently used in the main app, but demonstrate core patterns (numeric state, boolean toggling, conditional rendering) reused in later work.
+**components/Button.jsx**
+Reusable button supporting `variant` (primary, secondary, danger), `size` (small, medium, large), `disabled`, and `loading` states. Used in the Add Employee form and internally within `Pagination`.
 
-**Greeting.jsx**
-An early practice component demonstrating props and destructuring. Not part of the current dashboard UI.
+**components/Input.jsx**
+Reusable form input bundling a label, controlled input, and conditional error message into one component. Used for the Name and Email fields in the Add Employee form.
+
+**components/Card.jsx**
+Reusable content wrapper with consistent padding, border, and background, with an optional title heading. Wraps the Add Employee form.
+
+**components/SearchBar.jsx**
+Reusable search input, currently used to filter the Inventory table by name.
+
+**components/Pagination.jsx**
+Reusable pagination controls (Previous/Next buttons + page indicator), built using the `Button` component internally. Used in the Inventory table.
+
+**components/TableSkeleton.jsx**
+Reusable animated loading placeholder for tables, configurable via `rows` and `columns` props. Displays a shimmering CSS animation while data is being fetched.
+
+**Counter.jsx / ToggleText.jsx / Greeting.jsx**
+Early learning components built while practicing React fundamentals (props, state, conditional rendering). Not part of the current dashboard UI, kept as a record of the learning process.
 
 ## Validation Scenarios (Week 2)
 
@@ -122,12 +155,16 @@ The Inventory page fetches data from a public REST API used for testing/prototyp
 ![Inventory Search Filtering](./src/screenshots/inventory-search.png)
 ![Inventory Sorted Column](./src/screenshots/inventory-sorted.png)
 ![Inventory Pagination](./src/screenshots/inventory-pagination.png)
+![Sidebar with Synexus Logo](./src/screenshots/sidebar-logo.png)
+![Inventory Skeleton Loader](./src/screenshots/inventory-skeleton.png)
+![Inventory Final with Components](./src/screenshots/inventory-final.png)
 
 ## Known Limitations / Next Steps
 
-- Overview, Settings, and Reports pages currently show placeholder text; real content will be built in Week 4
-- Sidebar navigation currently uses plain `<Link>` — active route highlighting will be added in a future iteration
-- Inventory data is from a placeholder API; will connect to real backend data if/when available
+- Overview, Settings, and Reports pages are placeholders, as explicitly permitted by the project brief
+- Sidebar navigation currently uses plain `<Link>` — active route highlighting could be added in a future iteration
+- Inventory data is from a placeholder API; would connect to real backend data in a production setting
+- Add Employee form currently logs submissions to the console; would connect to a real/mock API endpoint in a production setting
 
 ## Author
 

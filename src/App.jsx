@@ -6,6 +6,7 @@ import Settings from './pages/Settings';
 import Reports from './pages/Reports';
 import AddEmployee from './pages/AddEmployee';
 import './App.css';
+import synexusLogo from './assets/synexus-logo.png';
 
 function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -14,7 +15,7 @@ function App() {
     <BrowserRouter>
       <div className="layout">
         <aside className={`sidebar ${isSidebarOpen ? 'open' : ''}`}>
-          <h2 className="logo">Synexus</h2>
+          <img src={synexusLogo} alt="Synexus Software Technologies" className="logo-img" />
           <nav className="nav-links">
             <Link to="/" onClick={() => setIsSidebarOpen(false)}>Overview</Link>
             <Link to="/inventory" onClick={() => setIsSidebarOpen(false)}>Inventory</Link>
