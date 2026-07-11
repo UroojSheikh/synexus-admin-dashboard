@@ -155,7 +155,6 @@ The Inventory page fetches data from a public REST API used for testing/prototyp
 ![Inventory Search Filtering](./src/screenshots/inventory-search.png)
 ![Inventory Sorted Column](./src/screenshots/inventory-sorted.png)
 ![Inventory Pagination](./src/screenshots/inventory-pagination.png)
-![Sidebar with Synexus Logo](./src/screenshots/sidebar-logo.png)
 ![Inventory Skeleton Loader](./src/screenshots/inventory-skeleton.png)
 ![Inventory Final with Components](./src/screenshots/inventory-final.png)
 
